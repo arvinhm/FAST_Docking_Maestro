@@ -4,4 +4,10 @@ python split.py # change the number of parts to 5000 or more if your pc can hand
 
 python run.py # change parts as you need (5000)
 
-out all maegz files as direct subjobs for vws function in Maestro
+python confgen.py to generate conformers
+
+merge all conformaers in one giant file using cat *.mae > combined.mae
+
+split merged files to whatever you want based on your CPU I prefer using 500
+
+use 500 files as direct subjobs for vws function in Maestro
