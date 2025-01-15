@@ -33,7 +33,7 @@ def run_confgen(confgen_executable, input_file, job_name):
     Run the confgen command.
     """
     # Increased -m and -n for higher computational load
-    command = f'{confgen_executable} "{input_file}" -m 5 -n 5 -optimize -force_field OPLS_2005 -j "{job_name}"'
+    command = f'{confgen_executable} "{input_file}" -m 10 -n 10 -optimize -force_field OPLS_2005 -j "{job_name}"'
     try:
         # Execute the ConfGen command and wait for it to complete
         subprocess.run(command, shell=True, check=True)
