@@ -43,7 +43,7 @@ def run_confgen(confgen_executable, input_file, job_name):
 
 def main():
     # Configuration Parameters
-    working_dir = r"C:\Users\Yue\Documents\Schrodinger\gzmb_6aa"
+    working_dir = r"./"
     os.chdir(working_dir)
     print(f"Current Working Directory: {os.getcwd()}")  # Debugging statement
     
