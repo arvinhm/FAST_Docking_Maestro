@@ -6,7 +6,7 @@ python run.py # change parts as you need (500)
 
 python confgen.py to generate conformers
 
-merge all conformaers in one giant file using cat *.mae > combined.mae
+merge all conformaers in one giant file using python merge.py
 
 split merged files to whatever you want based on your CPU I prefer using 500
 
