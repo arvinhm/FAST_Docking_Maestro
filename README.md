@@ -4,6 +4,8 @@ python split.py # change the number of parts to 500 or more if your pc can handl
 
 python run.py # change parts as you need (500)
 
+python peptide_prep.py
+
 python confgen.py to generate conformers
 
 merge all conformaers in one giant file using python merge.py
