@@ -50,4 +50,4 @@ if __name__ == "__main__":
     output_dir = "./"  # Replace with your desired output directory
 
     # Call the function to split the file into 32 parts
-    split_file(input_file, output_dir, num_parts=200)
+    split_file(input_file, output_dir, num_parts=32)
