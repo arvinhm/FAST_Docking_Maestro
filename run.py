@@ -6,8 +6,8 @@ schrodinger_run = r"C:\Program Files\Schrodinger2024-4\run.exe"
 
 # List of commands to run
 commands = [
-    f'"{schrodinger_run}" build_peptide.py split_part_{i}.txt split_part_{i}_peptides.mae -cap'
-    for i in range(1, 201)
+    f'"{schrodinger_run}" build_peptide.py output_splits/split_part_{i}.txt output_splits/split_part_{i}_peptides.mae -cap -z -s Extended'
+    for i in range(1, 33)
 ]
 
 # Function to launch a command and run it in a new command prompt
