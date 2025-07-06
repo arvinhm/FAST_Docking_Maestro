@@ -1,0 +1,37 @@
+# ── 1. collect *only* real JobIds ──────────────────────────────────────────────
+$jobIds = jobcontrol -list |
+          Where-Object { $_ -match '^[A-Za-z0-9]+-\d+-[0-9a-fA-F]+' } |
+          ForEach-Object { ($_ -split '\s+')[0] }
+
+if (-not $jobIds) {
+    Write-Host "No active Schrödinger jobs found."
+    return
+}
+
+# ── 2. try a graceful stop first ───────────────────────────────────────────────
+foreach ($id in $jobIds) {
+    Write-Host "Stopping $id ..."
+    jobcontrol -stop $id | Out-Null
+}
+
+# ── 3. for any job that reports “connection refused”, force‑cancel it ──────────
+$stillRunning = jobcontrol -list |
+                Where-Object { $_ -match 'stranded|running|launched|started' } |
+                ForEach-Object { ($_ -split '\s+')[0] }
+
+foreach ($id in $stillRunning) {
+    Write-Host "Force‑cancelling unreachable job $id ..."
+    jobcontrol -cancel $id | Out-Null
+}
+
+# ── 4. scrub stranded database entries so they disappear from `-list` ─────────
+$orphans = jobcontrol -list |
+           Where-Object { $_ -match 'stranded' } |
+           ForEach-Object { ($_ -split '\s+')[0] }
+
+foreach ($id in $orphans) {
+    Write-Host "Deleting stranded record $id ..."
+    jobcontrol -delete $id | Out-Null
+}
+
+Write-Host "All jobs have been stopped (or cancelled) and stray records cleaned up."
